@@ -31,4 +31,12 @@ jobs:
       - name: 开始编译（单线程避免失败）
         run: |
           cd openwrt
-          make -j1 V=s  # -j1 最稳定，不会报错
+          make -j2 V=s
+
+      # ==================== 下面是我帮你加的【自动上传固件】 ====================
+      - name: 上传编译好的固件
+        uses: actions/upload-artifact@v4
+        with:
+          name: openwrt-wing-ax3000-re-os-03u
+          path: openwrt/bin/targets/*/*
+      # =====================================================================
